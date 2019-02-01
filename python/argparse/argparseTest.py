@@ -15,6 +15,8 @@ parser = argparse.ArgumentParser(description='A program for testing argument par
 
 
 parser.add_argument('--video', help='enable writing a video to file')
+parser.add_argument('-p', '--plot', help='plot the final paths', action='store_true')
 
+args = parser.parse_args()
 
-parser.parse_args()
+print(args)
