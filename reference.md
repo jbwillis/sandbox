@@ -32,3 +32,16 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 	* `:source ~/.tmux.conf`
 
 ## Vim
+* To diff two buffers in vim:
+	* Navigate to the buffer and then `:diffthis`
+* Useful diff commands (from https://unix.stackexchange.com/questions/52754/whats-the-recommended-way-of-copying-changes-with-vimdiff)
+```
+]c               - advance to the next block with differences
+[c               - reverse search for the previous block with differences
+do (diff obtain) - bring changes from the other file to the current file
+dp (diff put)    - send changes from the current file to the other file
+zo               - unfold/unhide text
+zc               - refold/rehide text
+zr               - unfold both files completely
+zm               - fold both files completely
+```
