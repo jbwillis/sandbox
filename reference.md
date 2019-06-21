@@ -11,6 +11,16 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 ## Matlab
 * To open matlab without the GUI. This will still open GUIs for figures too.
 	* `matlab -nodesktop`
+* Debugging
+	| Command | Action |
+	|---------|--------|
+	|`dbstop in myfile at ##` |Set a breakpoint in myfile on line ## | 
+	| `dbstop in myprogram at 6 if n>=4` | Conditional breakpoint in myfile on line ## |
+	| `dbstatus` | List breakpoints |
+	| `dbcont` | Continue debugging |
+	| `dbclear all` | Clear all breakpoints |
+	| `dbclear in file at location` | removes the breakpoint set at the location in file |
+	| `dbquit` | Terminates debug mode |
 
 
 ## Linux
