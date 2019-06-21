@@ -35,6 +35,8 @@ Hopefully it ends up being a reference that prevents me from googling the same t
   # time passes and foo gets changed
   foo = reload(foo)
   ```
+* Shebang
+	`#!/usr/bin/env python3`
 
 ## Tmux
 * To re-load the configuration file
