@@ -42,5 +42,13 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 * To re-load the configuration file
 	* Ctrl-A then `:`
 	* `:source ~/.tmux.conf`
+* To rename a window
+	* Ctrl-A then `:`
+	* `:rename-window <name>`
 
 ## Vim
+* EasyAlign
+	* (github.com/junegunn/vim-easy-align`)
+	* To align to an '='
+		* Select the text in visual mode
+		* `ga=`
