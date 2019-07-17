@@ -1,17 +1,27 @@
 # CMake and Code Profiling
 
-![](https://imgs.xkcd.com/comics/is_it_worth_the_time.png)
+![](https://imgs.xkcd.com/comics/is_it_worth_the_time.png "https://imgs.xkcd.com/comics/is_it_worth_the_time.png")
+
+
+<!--# Definitions-->
+
+<!--These may not be perfect definitions, but they are good enough for now.-->
+
+<!--* Executable - the result of compiling a c/c++ program. -->
+<!--* Library - a pre-compiled piece of software that your program relies on.-->
+<!--* Static - compiled library code is included in code for final program-->
+<!--* Shared - compiled library code is linked in during the execution of the program-->
 
 ---
+# Three main tools
 
-# Definitions
+* **Make (Makefiles)**
 
-These may not be perfect definitions, but they are good enough for now.
 
-* Executable - the result of compiling a c/c++ program. 
-* Library - a pre-compiled piece of software that your program relies on.
-	* Static - compiled library code is included in code for final program
-	* Shared - compiled library code is linked in during the execution of the program
+* **CMake (CMakelists)**
+
+
+* **catkin\_make**
 
 ---
 
@@ -64,11 +74,16 @@ When compiling this program, you might run:
 	!bash
 	gcc -o build/main src/main.c src/helloworld.c -Iinclude/
 
-* Quick for small programs
+---
+# Compiling on command line
+When compiling this program, you might run:
+
+	!bash
+	gcc -o build/main src/main.c src/helloworld.c -Iinclude/
+
+* Simple and quick for small programs
 * No documented/repeatable method for compiling
 * Recompiles all of the files, regardless of changes
-
-This works fine for a program consisting of a couple of files, but quickly becomes unweildy. It requires you to recall the exact command you are using when compiling, and it recompiles all of the files, regardless of if they have been changed. Recompiling unchanged files becomes a significant waste of time on any but the the simplest projects.
 
 ---
 # Makefiles
