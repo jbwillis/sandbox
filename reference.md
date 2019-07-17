@@ -11,6 +11,16 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 ## Matlab
 * To open matlab without the GUI. This will still open GUIs for figures too.
 	* `matlab -nodesktop`
+* Debugging
+	| Command | Action |
+	|---------|--------|
+	|`dbstop in myfile at ##` |Set a breakpoint in myfile on line ## | 
+	| `dbstop in myprogram at 6 if n>=4` | Conditional breakpoint in myfile on line ## |
+	| `dbstatus` | List breakpoints |
+	| `dbcont` | Continue debugging |
+	| `dbclear all` | Clear all breakpoints |
+	| `dbclear in file at location` | removes the breakpoint set at the location in file |
+	| `dbquit` | Terminates debug mode |
 
 
 ## Linux
@@ -25,11 +35,16 @@ Hopefully it ends up being a reference that prevents me from googling the same t
   # time passes and foo gets changed
   foo = reload(foo)
   ```
+* Shebang
+	`#!/usr/bin/env python3`
 
 ## Tmux
 * To re-load the configuration file
 	* Ctrl-A then `:`
 	* `:source ~/.tmux.conf`
+* To rename a window
+	* Ctrl-A then `:`
+	* `:rename-window <name>`
 
 ## Vim
 * To diff two buffers in vim:
@@ -45,3 +60,8 @@ zc               - refold/rehide text
 zr               - unfold both files completely
 zm               - fold both files completely
 ```
+* EasyAlign
+	* (github.com/junegunn/vim-easy-align`)
+	* To align to an '='
+		* Select the text in visual mode
+		* `ga=`
