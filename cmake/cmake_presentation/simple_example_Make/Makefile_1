@@ -1,2 +1,2 @@
 main: src/main.c src/helloworld.c
-	gcc -o obj/main src/main.c src/helloworld.c -Iinclude/
+	gcc -o build/main src/main.c src/helloworld.c -Iinclude/

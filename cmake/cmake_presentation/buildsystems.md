@@ -68,8 +68,8 @@ Here's about the simplest makefile that could be used to compile our example:
 
 **Makefile_1**
 ``` make
-hellomake: main.c lib/helloworld/helloworld.c
-	gcc -o build/main src/main.c lib/helloworld/helloworld.c -Ilib/helloworld/
+hellomake: src/main.c src/helloworld.c
+	gcc -o build/main src/main.c include/helloworld.c -Iinclude/
 ```
 
 To run it, place it in a file titled `Makefile` in the root of `simple_example` and type `make`. Note that the gcc line must be _tabbed_ and not indented with spaces. This makefile makes it easy to recompile the program, but it would be a lot of work to add additional files, and it is still recompiling all of the files every time one is changed. This is not a tutorial on makefiles, but just to show that there is a lot that can be done with a makefile, here is a more complete example for our simple hello world program.

@@ -98,9 +98,9 @@ When compiling this program, you might run:
 Here's about the simplest makefile that could be used to compile our example:
 
 	!makefile
-	hellomake: main.c lib/helloworld/helloworld.c
+	hellomake: src/main.c include/helloworld.c
 		gcc -o build/main src/main.c \
-		lib/helloworld/helloworld.c -Ilib/helloworld/
+		include/helloworld.c -Iinclude/
 
 * Easy to recompile
 * Not very easy to extend
