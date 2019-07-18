@@ -26,7 +26,7 @@
 ---
 
 # Make vs CMake - A Simple Example
-We will use the following three files for a simple hello world program [ref](http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/). 
+We will use the following three files for a simple hello world program: 
 
 **main.c**
 
@@ -57,12 +57,13 @@ We will use the following three files for a simple hello world program [ref](htt
 
 ---
 # Simple Example - File Org
-These files are arranged in the following directory structure, where * is either Make or CMake. 
+These files are arranged in the following directory structure
 
 	simple_example_*/
 	├── build
 	├── include
 	│   └── helloworld.h
+	├── Makefile
 	└── src
 		├── helloworld.c
 		└── main.c
@@ -83,7 +84,9 @@ When compiling this program, you might run:
 
 * Simple and quick for small programs
 * No documented/repeatable method for compiling
-* Recompiles all of the files, regardless of changes
+* Hard to extend (and get right) as the project size grows
+* Recompiles all of the files, regardless of changes (slow)
+* Can't take advantage of parallelism
 
 ---
 # Makefiles
@@ -203,13 +206,11 @@ Then to run `main`:
 # Building in ROS - Catkin
 .notes: This assumes you are already familar with the basic structure of a catkin workspace, and how to build a set of ros packages.
 
-## Catkin
-<!--![](https://en.wikipedia.org/wiki/Catkin#/media/File:Willow_catkin_2_aka.jpg "Catkins on a willow")-->
 ![](catkin_300.jpg "https://en.wikipedia.org/wiki/Catkin#/media/File:Willow_catkin_2_aka.jpg")
 
-* Essentially a wrapper for CMake that does some ros-specifiic things before calling cmake.
+Essentially a wrapper for CMake that does some set up before calling cmake.
 
-* When you run `catkin_make` in an empty catkin workspace (`~/catkin_ws`), [here is what is actually happening](http://wiki.ros.org/catkin/commands/catkin_make)
+When you run `catkin_make` in an empty catkin workspace (`~/catkin_ws`)
 
 	!bash
 	$ cd ~/catkin_ws
@@ -221,6 +222,9 @@ Then to run `main`:
 	$ cmake ../src -DCMAKE_INSTALL_PREFIX=../install -DCATKIN_DEVEL_PREFIX=../devel
 	$ make
 
+
+[ref](http://wiki.ros.org/catkin/commands/catkin_make)
+
 .notes: The `catkin_init_workspace` command creates the top level CMakelists.txt as a symlink to a generic one found in the ros installation. Note that at the end, `cmake` is invoked on the `src` directory, and then `make` is called from within `build`.
 
 ---
@@ -231,7 +235,7 @@ There are countless resources on CMake online. To give a good general overview o
 
 # Improving the build - CCache
 * make (and thus cmake) uses file timestamps to determine when it needs to recompile a file. 
-* ccmake hashes the source file and compiler arguments and stores the compiled object files in a cache. 
+* ccache hashes the source file and compiler arguments and stores the compiled object files in a cache. 
 * Installing ccmake reduced the time it took for a clean recompile of roscoptor from ~50 sec to ~20 sec, including the time cmake spends regenerating files. 
 
 .notes: There are times when files have not changed, but the timestamp has (such as on a git checkout). Additionally, on a `make clean; make` many of the built files will not change, but on a large project you will wait a long time for them to rebuild. Finally, if you are working on multiple copies of the same project (such as rosflight in roscopter and rosplane), you might be recompiling much of the same code. 
@@ -253,6 +257,8 @@ There are countless resources on CMake online. To give a good general overview o
 # Improving the build - Ninja
 [Ninja](https://ninja-build.org/) is intended to speed up incremental builds. CMake (and thus Catkin) has built in support for generating ninja buildfiles. To run `catkin_make` with ninja, just pass the `--use-ninja` flag.
 
+---
+# Discussion
 ---
 
 # References
@@ -312,6 +318,8 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Profiling_(computer_programming))
 * Primarily a fast implementation of `malloc`, but it also includes a CPU profiler, heap profiler, and memory leak detector.
 * Supports statitistical (fast) profiling of multi-threaded programs.
 
+---
+# Discussion
 ---
 # Resources
 * [Comparison of **gperftools,** **Valgrind,** and **gprof**](http://gernotklingler.com/blog/gprof-valgrind-gperftools-evaluation-tools-application-level-cpu-profiling-linux/)
