@@ -26,7 +26,9 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 ## Linux
 * Spell check
 	* `aspell` will spell check a text file. 
-
+## LaTeX
+* To recompile live, use `latexmk`
+  * `latexmk -pvc -pdf main.tex`
 ## Python
 * To re-load a module that you have changed
   ```
