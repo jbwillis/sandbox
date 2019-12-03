@@ -29,6 +29,11 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 ## LaTeX
 * To recompile live, use `latexmk`
   * `latexmk -pvc -pdf main.tex`
+  * There needs to be a ~/.latexmkrc file containing the following:
+```
+$pdflatex = 'pdflatex -interaction=nonstopmode';
+$pdf_previewer = '/usr/bin/evince';
+```
 ## Python
 * To re-load a module that you have changed
   ```
