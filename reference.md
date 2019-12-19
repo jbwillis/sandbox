@@ -8,6 +8,19 @@ Hopefully it ends up being a reference that prevents me from googling the same t
 	* `git rm --cached <file>`
 	* This will delete the file when others pull the commit, but works fine for files that are generated on a build.
 
+## Jupyter
+It seems that the modern Jupyter Notebook system is jupyterlab. This can be installed simply by running `pip3 install jupyterlab`.
+I looked into using a Docker image to encapsulate the jupyterlab installation, but since I didn't use anaconda to set up my notebooks, it seems that it isn't actually that messy to just intall jupyterlab.
+
+One feature that I really want in my jupyter notebooks is for them to be as similar to latex documents as possible. The following extension seems to acheive that [jupyter_latex_envs](https://github.com/jfbercher/jupyter_latex_envs). 
+
+To install extensions it is necessary to install Node.js and npm (the nodejs package manager).
+To do this I did the following (see https://github.com/nodesource/distributions#debinstall):
+```
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
 ## Matlab
 * To open matlab without the GUI. This will still open GUIs for figures too.
 	* `matlab -nodesktop`
