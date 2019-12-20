@@ -21,6 +21,12 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
+### Interesting Features
+* C++ jupyter notebooks using xeus-cling (a nice description on Medium https://blog.jupyter.org/interactive-workflows-for-c-with-jupyter-fe9b54227d92)
+* Vim keybinding
+* nbviewer and binder for my git repos
+* nbdime (diff tool for notebooks)
+
 ## Matlab
 * To open matlab without the GUI. This will still open GUIs for figures too.
 	* `matlab -nodesktop`
