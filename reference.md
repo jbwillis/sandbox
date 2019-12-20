@@ -26,6 +26,23 @@ sudo apt-get install -y nodejs
 * Vim keybinding
 * nbviewer and binder for my git repos
 * nbdime (diff tool for notebooks)
+* Printing variables from code in markdown (https://data-dive.com/jupyterlab-markdown-cells-include-variables)
+* Using either mkdocs-material or jupyterbooks to produce a nice webpage/blog interface for my notebooks
+
+### Jupyter Notebooks vs Jupyter lab
+It seems that while jupyterlab is the most modern system in the jupyter ecosystem, it doesn't have the number of extensions that jupyter notebooks do and is not compatible with jupyter notebook extensions. Frustrating, since this could mean that notebooks which take advantage of one type of extension won't work in the other environment. I have found, however that some of the most useful extensions (for me) aren't available in jupyterlab, so I am going to use jupyter notebooks instead.
+
+#### Interesting Extensions
+* jupyter_latex_envs (linked above)
+* python-markdown/main
+  * allows python variables to be printed in markdown
+
+#### Installing Jupyter Notebook Extensions
+* `pip3 install jupyter_contrib_nbextensions`
+* `jupyter nbextensions_configurator enable`
+* ` pip3 install jupyter_latex_envs`
+* `jupyter nbextension install --py latex_envs --user`
+* `jupyter nbextension enable latex_envs --user --py`
 
 ## Matlab
 * To open matlab without the GUI. This will still open GUIs for figures too.
