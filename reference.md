@@ -72,6 +72,9 @@ $pdf_previewer = '/usr/bin/evince';
 ```
 
 ## OpenCV
+
+**ROS Melodic Already Installs OpenCV 3.2**. Until I need something else, I am going to stick with 3.2.
+
 Installing opencv is quite a pain. The official [OpenCV installation tutorial](https://docs.opencv.org/4.2.0/d7/d9f/tutorial_linux_install.html) doesn't do a very good job explaining what dependencies need to be installed, and since the installation involves compiling from source, it won't automatically update the dependencies for you. While installing, I referenced the following tutorials:
 
 * [The official OpenCV installation tutorial](https://docs.opencv.org/4.2.0/d7/d9f/tutorial_linux_install.html)
@@ -84,6 +87,23 @@ Installing opencv is quite a pain. The official [OpenCV installation tutorial](h
    * It has multiple points where it reccomends a full reboot before continuing which the other tutorials did not have.
 
 As I was doing the OpenCV install, I also installed the RealSense SDK, since it is likely I will be using it at some point. [There are instructions on the Real Sense Github](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
+
+This is the final cmake command I used on my laptop (no cuda):
+```
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_CUDA=OFF -D INSTALL_PYTHON_EXAMPLES=ON -DOPENCV_EXTRA_MODULES_PATH=~/downloads/opencv_build/opencv_contrib-4.2.0/modules -D OPENCV_ENABLE_NONFREE=ON -D BUILD_EXAMPLES=ON -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) -DBUILD_USE_SYMLINKS=ON -DBUILD_PERF_TESTS=OFF -DBUILD_JAVA=OFF \
+-DBUILD_opencv_java_bindings_gen=OFF \
+-DWITH_GDAL=ON \
+-DWITH_CLP=ON \
+-DTesseract_INCLUDE_DIR=/usr/include/tesseract \
+-DTesseract_LIBRARY=/usr/lib/x86_64-linux-gnu/libtesseract.so \
+-DOpenBLAS_LIB=/usr/lib/x86_64-linux-gnu/openblas/libblas.so \
+-DWITH_OPENGL=ON \
+-DWITH_VULKAN=ON \
+-DWITH_LIBREALSENSE=On \
+-DLIBREALSENSE_INCLUDE_DIR=/usr/include/librealsense2 \
+..
+```
+
 ## Python
 * To re-load a module that you have changed
   ```
