@@ -83,6 +83,7 @@ Installing opencv is quite a pain. The official [OpenCV installation tutorial](h
    * This is focused on installing OpenCV with Cuda support, but many of the steps (and dependencies) are the same as without Cuda. 
    * It has multiple points where it reccomends a full reboot before continuing which the other tutorials did not have.
 
+As I was doing the OpenCV install, I also installed the RealSense SDK, since it is likely I will be using it at some point. [There are instructions on the Real Sense Github](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
 ## Python
 * To re-load a module that you have changed
   ```
