@@ -3,6 +3,113 @@ This is an accumulation of things I have found useful in my use of different
 linux tools. 
 Hopefully it ends up being a reference that prevents me from googling the same thing multiple times.
 
+## Box with Linux
+Box doesn't provide a native synchronization application for Linux. Most of the search results for "box with linux" are quite old and suggest using a webDAV interface. I tried this and found it to perform miserably, I believe because it was re-reading my entire box filesystem every time I opened a directory. As an alternative, I found [`rclone`](https://rclone.org/). It took me an hour or so to set up and works beautifully. 
+Here's some resources I found helpful for setting up `rclone`:
+* [BYU office of research computing uses rclone for syncing to box from their supercomputers](https://rc.byu.edu/wiki/?id=Rclone)
+* [A blog post on using box with linux](https://daniel.perez.sh/blog/2019/box-linux/)
+	* This follows a slightly different set up proceedure than I did but it provides a good (brief) description of common commands.
+* [Rclone's Documentation](https://rclone.org/docs/)
+
+### Install
+Here's the steps I followed:
+1. Installation:
+	* The rclone package in apt is out of date, but rclone makes it easy to install using a [provided install script](https://rclone.org/install/):
+	* `curl https://rclone.org/install.sh | sudo bash`
+2. Box set up:
+	* This is the process I used with `rclone v1.51.0`, it might differ sligthly (some of the other guides I found had slightly different steps).
+	* `rclone config`
+
+```
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q> n
+name> desired-remote-name
+```
+```
+Type of storage to configure.
+Enter a string value. Press Enter for the default ("").
+Choose a number from below, or type in your own value
+Storage> box
+```
+```
+Box App Client Id.
+Leave blank normally.
+Enter a string value. Press Enter for the default ("").
+client_id> 
+```
+```
+Box App Client Secret
+Leave blank normally.
+Enter a string value. Press Enter for the default ("").
+client_secret> 
+```
+```
+Box App config.json location
+Leave blank normally.
+Enter a string value. Press Enter for the default ("").
+box_config_file> 
+```
+```
+Enter a string value. Press Enter for the default ("user").
+Choose a number from below, or type in your own value
+ 1 / Rclone should act on behalf of a user
+   \ "user"
+ 2 / Rclone should act on behalf of a service account
+   \ "enterprise"
+box_sub_type> user
+```
+```
+Edit advanced config? (y/n)
+y) Yes
+n) No (default)
+y/n> n
+Remote config
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine
+y) Yes (default)
+n) No
+y/n> Y
+```
+At this point a browser window will open with a box login option.
+If you're using a university box account, click the `sign in with sso` option below the username and password boxes. Enter the university email associated with the account, and sign in.
+
+```
+Waiting for code...
+Got code
+--------------------
+[um-box]
+type = box
+token = ...
+--------------------
+y) Yes this is OK (default)
+e) Edit this remote
+d) Delete this remote
+y/e/d> 
+```
+
+**Done!**
+
+### Usage
+* To copy a file to the remote (box)
+	* `rclone copy local_file desired-remote-name:path/to/desired/directory`
+	* Note that the source (first path) can be a file or a directory, but the destination must be a directory.
+* To check the differences between a local directory and a remote directory
+	* `rclone check local_dir desired-remote-name:remote_dir`
+* To synchronized changed files in a source directory to a destination directory (one way, this will overwrite changes in the destination)
+	* `rclone sync source destination`
+
+#### My typical workflow
+I think I will follow a workflow similar to that with git. Many of the files I will be using with this are binary, so it is more important to make sure that changes are monitored. It will be hard (impossible) to merge two sets of changes into one file. Box maintains a version history of files and creates a new version each time rclone copies in a modified file with the same filename. This could be used, for example, to get changes made by two different people and merge them manually.
+1. Check if there are differences between the remote and the local.
+	* If there are differences, determine which to keep (essentially a merge)
+2. Sync to keep the desired changes
+3. Work on files
+4. Sync local to remote
+
 ## Git
 * To have git "forget" about a file that is tracked but is now in gitignore
 	* `git rm --cached <file>`
