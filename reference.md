@@ -147,7 +147,8 @@ It seems that while jupyterlab is the most modern system in the jupyter ecosyste
 #### Installing Jupyter Notebook Extensions
 * `pip3 install jupyter_contrib_nbextensions`
 * `jupyter nbextensions_configurator enable`
-* ` pip3 install jupyter_latex_envs`
+* `jupyter contrib nbextension install --user`
+* `pip3 install jupyter_latex_envs`
 * `jupyter nbextension install --py latex_envs --user`
 * `jupyter nbextension enable latex_envs --user --py`
 
