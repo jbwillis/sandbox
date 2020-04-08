@@ -178,6 +178,20 @@ It seems that while jupyterlab is the most modern system in the jupyter ecosyste
 $pdflatex = 'pdflatex -interaction=nonstopmode';
 $pdf_previewer = '/usr/bin/evince';
 ```
+
+## OpenCV
+Installing opencv is quite a pain. The official [OpenCV installation tutorial](https://docs.opencv.org/4.2.0/d7/d9f/tutorial_linux_install.html) doesn't do a very good job explaining what dependencies need to be installed, and since the installation involves compiling from source, it won't automatically update the dependencies for you. While installing, I referenced the following tutorials:
+
+* [The official OpenCV installation tutorial](https://docs.opencv.org/4.2.0/d7/d9f/tutorial_linux_install.html)
+   * This tutorial gives the bare bones installation instructions. I think it gives the best overview of what needs to be done, which helps with understanding the longer processes described in the other tutorials.
+* [PyImageSearch Tutorial](https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/)
+   * This explains how to install OpenCV for python, which I think is essentially just installing OpenCV.
+   * I didn't worry about the virtual environment stuff (though that's more laziness than anything on my part)
+* [MAGICC OpenCV with Cuda](https://magiccvs.byu.edu/wiki/#!sw_guides/opencv.md)
+   * This is focused on installing OpenCV with Cuda support, but many of the steps (and dependencies) are the same as without Cuda. 
+   * It has multiple points where it reccomends a full reboot before continuing which the other tutorials did not have.
+
+As I was doing the OpenCV install, I also installed the RealSense SDK, since it is likely I will be using it at some point. [There are instructions on the Real Sense Github](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
 ## Python
 * To re-load a module that you have changed
   ```
