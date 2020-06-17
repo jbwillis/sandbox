@@ -2,21 +2,15 @@
 #ifndef _TEST_CLASS_H_
 #define _TEST_CLASS_H_
 
-#include "vtemp_virtual.h"
+#include "log_interface.h"
 
 
 template<typename DerivedLogger>
 class TestClass
 {
 public:
-	TestClass(LogInterface<DerivedLogger>& logger) : logger_(logger)
-{
-
-}
-	void test_logging()
-{
-	logger_.log("Logging from test class");
-}
+	TestClass(LogInterface<DerivedLogger>& logger) ;
+	void test_logging();
 
 private:
 	LogInterface<DerivedLogger>& logger_;
