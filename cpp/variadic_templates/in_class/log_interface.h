@@ -27,7 +27,10 @@ public:
 	{
 		std::stringstream ss;
 		ss << "Default LOG: " << fmt << "\n";
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
 		printf(ss.str().c_str(), args...);
+#pragma GCC diagnostic pop
 	}
 };
 
