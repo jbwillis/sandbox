@@ -25,11 +25,14 @@ int main()
 
 	// When performing arithmetic, it uses the smallest base (nanoseconds here)
 	std::cout << "One ns - one us = " << (1ns - 1us).count() << " nanoseconds" << std::endl;
-	std::cout << "abs(One ns - one us) = " << std::chrono::abs(1ns - 1us).count() << " nanoseconds" << std::endl;
+	//std::cout << "abs(One ns - one us) = " << std::chrono::abs(1ns - 1us).count() << " nanoseconds" << std::endl;
 
 	std::cout << "1.95*(10ns) = " << std::chrono::duration_cast<std::chrono::nanoseconds>(1.95*10ns).count() << " nanoseconds" << std::endl;
 
 	std::cout << "778e6 nanoseconds = " << std::chrono::duration<double>(778e6ns).count() << " seconds" << std::endl;
 
 	print_plus_ten_ns(std::chrono::milliseconds(1));
+
+	// can't convert us to ms without loss of information, won't compile
+	//print_plus_ten_ns(std::chrono::microseconds(1));
 }
