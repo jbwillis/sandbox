@@ -192,6 +192,37 @@ Installing opencv is quite a pain. The official [OpenCV installation tutorial](h
    * It has multiple points where it reccomends a full reboot before continuing which the other tutorials did not have.
 
 As I was doing the OpenCV install, I also installed the RealSense SDK, since it is likely I will be using it at some point. [There are instructions on the Real Sense Github](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
+
+## Pixhawk/PX4
+The PX4 [install instructions](https://dev.px4.io/master/en/setup/dev_env_linux_ubuntu.html) only provide a script to download and install the necessary toolchain for building and running PX4. This is a real pain since it assumes it is being run on a clean Ubuntu install. I decided to just run it and cross my fingers that things would work out. The following are notes from this experience.
+
+* `~/catkin_ws.sh` is used by the ROS install script. This is a commonly used directory for ROS tutorials and may get overwritten. Make sure you don't have anything there.
+* I had to manually install `GeographicLib`:
+	* `sudo apt install geographiclib-tools ros-melodic-geographic-msgs libgeographic-dev`
+* I had to add the `future` module to my `python2` install
+	* `python2 -m pip install future`
+
+## PSOPT
+Installing PSOPT is a bit of a rabbit hole. I installed PSOPT 5, which required updating my machine to Ubuntu 20 since it relied on some CMake features not available prior to CMake 3.12, and CMake 3.10 is bundled with Ubuntu 18. Because of the strong ties ROS has to CMake, I decided the best path forward would be to update to Ubuntu 20. So that's step 1.
+
+PSOPT also relies on installing IPOPT as the optimizer. There's a [decent install guide for IPOPT](https://coin-or.github.io/Ipopt/INSTALL.html), but there are some important notes. 
+
+### HSL
+To install the HSL dependency using the `ThirdParty-HSL` repository you still need to get the HSL source by applying for an academic license. 
+Additionally it is important to run `make` inside of the extracted `.zip` archive of HSL.
+
+### MUMPS
+PSOPT relies on the MUMPS solver to be installed with IPOPT. To do this, you can use the `ThirdParty-Mumps` repository provided by COIN-OR. But, I had to add the `--with-mumps-cflags="-I/usr/local/include/coin-or/mumps"` and the `--with-mumps-lflags="-lcoinmumps"` flags to the `../configure` command for configuring IPOPT.
+```
+../configure --with-mumps-cflags="-I/usr/local/include/coin-or/mumps" --with-mumps-lflags="-lcoinmumps"
+```
+
+**It is also necessary to update the linker using ldconfig before running any of the PSOPT programs**
+```
+$ sudo ldconfig
+```
+
+
 ## Python
 * To re-load a module that you have changed
   ```
