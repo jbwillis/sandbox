@@ -1,0 +1,22 @@
+% To compile:
+% $ pdflatex simple.tex
+% $ bibtex simple.aux
+% $ pdflatex simple.tex
+% $ pdflatex simple.tex
+
+
+\documentclass[11pt]{article}
+\usepackage{cite}
+
+\begin{document}
+
+\title{My Article}
+\author{Nobody Jr.}
+\date{Today}
+\maketitle
+
+Blablabla said Nobody ~\cite{Nobody06}.
+
+\bibliography{simplebib}{}
+\bibliographystyle{plain}
+\end{document}
