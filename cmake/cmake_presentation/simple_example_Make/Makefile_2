@@ -15,7 +15,7 @@ $(BDIR)/%.o: $(SDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
-	$(CC) -o $(BDIR)/$@ $^ $(CFLAGS) 
+	$(CC) -o $(BDIR)/$@.out $^ $(CFLAGS) 
 
 .PHONY: clean
 

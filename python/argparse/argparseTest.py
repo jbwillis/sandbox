@@ -16,7 +16,12 @@ parser = argparse.ArgumentParser(description='A program for testing argument par
 
 parser.add_argument('--video', help='enable writing a video to file')
 parser.add_argument('-p', '--plot', help='plot the final paths', action='store_true')
+parser.add_argument('-n', '--number', help='An integer, default = 1', default=1, type=int)
+parser.add_argument('-s', '--string', help='A string, default = Hello', type=str)
 
 args = parser.parse_args()
 
-print(args)
+if args.number is not None:
+    print("Number = {}".format(args.number))
+if args.string is not None:
+    print("String = {}".format(args.string))
