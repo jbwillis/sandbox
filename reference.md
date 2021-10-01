@@ -196,6 +196,13 @@ Installing opencv is quite a pain. The official [OpenCV installation tutorial](h
 
 As I was doing the OpenCV install, I also installed the RealSense SDK, since it is likely I will be using it at some point. [There are instructions on the Real Sense Github](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
 
+This is the set of packages I installed prior to building OpenCV
+```
+sudo apt install build-essential cmake libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libdc1394-22-dev libjpeg-dev libpng-dev libtiff-dev
+
+sudo apt install libopenblas-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libatlas-base-dev gfortran libhdf5-dev libeigen3-dev libeigen-stl-containers-dev libavresample-dev zlib1g libatlas3-base libatlas-base-dev liblapacke-dev libvtk7-jni libvtk7-dev libvtk7-java libopenjp2-tools libprotobuf-dev libgtkglext1-dev libtbb-dev libceres-dev libleptonica-dev coinor-libclp-dev libtesseract-dev tesseract-ocr libogre-1.12-dev ogre-1.12-tools ocl-icd-opencl-dev ocl-icd-libopencl1 opencl-headers clinfo ocl-icd-dev hdf5-tools pybind11-dev python3-dev
+```
+
 This is the final cmake command I used on my laptop (no cuda):
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_CUDA=OFF -D INSTALL_PYTHON_EXAMPLES=ON -DOPENCV_EXTRA_MODULES_PATH=~/downloads/opencv_build/opencv_contrib-4.2.0/modules -D OPENCV_ENABLE_NONFREE=ON -D BUILD_EXAMPLES=ON -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) -DBUILD_USE_SYMLINKS=ON -DBUILD_PERF_TESTS=OFF -DBUILD_JAVA=OFF \
