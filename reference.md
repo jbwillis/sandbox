@@ -115,6 +115,11 @@ I think I will follow a workflow similar to that with git. Many of the files I w
 	* `git rm --cached <file>`
 	* This will delete the file when others pull the commit, but works fine for files that are generated on a build.
 
+## Julia
+
+* Convert meshcat frames to video
+`ffmpeg -r 60 -i %07d.png -vcodec libx264 -pix_fmt yuv420p -preset slow -crf 18 output2.mp4`
+
 ## Jupyter
 It seems that the modern Jupyter Notebook system is jupyterlab. This can be installed simply by running `pip3 install jupyterlab`.
 I looked into using a Docker image to encapsulate the jupyterlab installation, but since I didn't use anaconda to set up my notebooks, it seems that it isn't actually that messy to just intall jupyterlab.
