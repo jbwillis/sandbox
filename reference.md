@@ -158,6 +158,8 @@ It seems that while jupyterlab is the most modern system in the jupyter ecosyste
 * `jupyter nbextension enable latex_envs --user --py`
 
 ## Matlab
+* To add MATLAB to system path on mac
+  * `ln -s /Applications/MATLAB_R2021b.app/bin/matlab /usr/local/bin/matlab`
 * To open matlab without the GUI. This will still open GUIs for figures too.
 	* `matlab -nodesktop`
 * Debugging
