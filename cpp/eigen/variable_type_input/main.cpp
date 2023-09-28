@@ -1,30 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense>
-
-template <typename Scalar>
-void processEigenMatrix(Eigen::Matrix<Scalar, 6, 1> &outputMatrix, const Eigen::Matrix<Scalar, 6, 1> inputMatrix)
-{
-    for (int i = 0; i < 6; i++)
-    {
-        for (int j = 0; j <= i; j++)
-        {
-            outputMatrix[i] += inputMatrix[j];
-        }
-    }
-    Eigen::Matrix<Scalar, 6, 6> temp = outputMatrix * inputMatrix.transpose();
-    Scalar stemp = outputMatrix.transpose() * temp * inputMatrix;
-    std::cout << "stemp = " << stemp << std::endl;
-}
-
-// Template function that accepts a 6x1 Eigen matrix with arbitrary scalar type
-template <typename T>
-void printEigenMatrix(const Eigen::Matrix<T, 6, 1> inputMatrix)
-{
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << "Element " << i << ": " << inputMatrix(i, 0) << std::endl;
-    }
-}
+#include "eigenstuff.h"
 
 int main()
 {
