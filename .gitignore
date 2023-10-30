@@ -4,3 +4,6 @@
 *.o
 *.zip
 build
+.idea
+.vscode
+.ipynb_checkpoints/
