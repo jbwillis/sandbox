@@ -177,6 +177,30 @@ It seems that while jupyterlab is the most modern system in the jupyter ecosyste
 ## Linux
 * Spell check
 	* `aspell` will spell check a text file. 
+* Manually add internet connection
+	* I tested this on a raspberry pi
+	* `sudo vi /etc/wpa_supplicant/wpa_supplicant.conf`
+		* Modify to add additional network
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+        ssid="network 1"
+        psk="password 1"
+        priority=1
+}
+network={
+        ssid="network 2"
+        psk="password 2"
+        priority=2
+        key_mgmt=WPA-PSK
+}
+```
+* Reconfigure wpa
+	* ` wpa_cli -i wlan0 reconfigure`
+
 ## LaTeX
 * To recompile live, use `latexmk`
   * `latexmk -pvc -pdf main.tex`
