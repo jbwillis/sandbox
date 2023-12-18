@@ -10,6 +10,7 @@ import zmq
 
 context = zmq.Context()
 socket = context.socket(zmq.SUB)
+# interface must be localhost or an IP address ('*' does not work here)
 socket.connect("tcp://localhost:5556")
 socket.setsockopt_string(zmq.SUBSCRIBE, "")  # subscribe to everything
 

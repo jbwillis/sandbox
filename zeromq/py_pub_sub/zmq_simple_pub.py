@@ -10,6 +10,7 @@ import zmq
 
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
+# can't use localhost for the interface, must be '*' or an IP address
 socket.bind("tcp://*:5556")
 
 while True:
